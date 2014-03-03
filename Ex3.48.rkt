@@ -50,8 +50,9 @@
     (define (next-number)
       (begin (set! number (+ number 1))
              number))
-    (define (dispatch m)
-      (cond ((eq? m 'number) (next-number))))
+    (let ((acno-serializer (make-serializer)))
+          (define (dispatch m)
+            (cond ((eq? m 'number) (next-number)))))
     dispatch))
 
 (define acno-maker (make-acno-maker))
