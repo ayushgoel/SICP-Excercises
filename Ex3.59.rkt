@@ -53,3 +53,12 @@
 (define exp-series
   (stream-cons 1 (integrate-series exp-series)))
 (show-10-elements exp-series)
+
+(define cosine-series
+  (stream-cons 1 (stream-map - (integrate-series sine-series)))) 
+(define sine-series
+  (stream-cons 0 (integrate-series cosine-series)))
+
+(display "Cosine")
+(show-10-elements cosine-series)
+(show-10-elements sine-series)
