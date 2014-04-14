@@ -30,15 +30,15 @@
 
 (show-10-elements integers)
 
-(define inverse-integers
-  (stream-cons (/ 1 2)
-               (stream-map (lambda (x) (/ 1 (+ (/ 1 x) 1))) 
-                           inverse-integers)))
-(show-10-elements inverse-integers)
-
+;(define inverse-integers
+;  (stream-cons 1
+;               (stream-map (lambda (x) (/ 1 (+ (/ 1 x) 1)))
+;                           inverse-integers)))
+(define inverse-integers (stream-map (lambda (x) (/ 1 x)) integers))
 
 (define (integrate-series s)
-  (stream-cons (stream-first s) (mul-streams inverse-integers (stream-rest s))))
+  (mul-streams inverse-integers
+               s))
 
 (define in (integrate-series integers))
 (show-10-elements in)
