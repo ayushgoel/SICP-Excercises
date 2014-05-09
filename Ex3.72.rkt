@@ -54,7 +54,7 @@
     (if (is-special-number? i j l)
         (cons-stream (list i j l (sum-weight i))
                      (ramanujam-numbers k))
-        (ramanujam-numbers (stream-cdr s)))))
+        (ramanujam-numbers k))))
 
 (stream-take ints 20)
 (stream-take (ramanujam-numbers ints) 3)
