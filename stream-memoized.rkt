@@ -69,3 +69,9 @@
       the-empty-stream
       (cons-stream low
                    (stream-enumerate-interval (+ low 1) high))))
+
+(define (scale-stream stream factor)
+  (stream-map (lambda (x) (* x factor)) stream))
+
+(define (add-streams s1 s2)
+  (stream-map + s1 s2))
