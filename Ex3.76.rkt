@@ -3,9 +3,7 @@
 (require "stream-memoized.rkt")
 
 (define (sign-change-detector x1 x2)
-  (cond ((or (and (< x1 0) (< x2 0))
-            (and (> x1 0) (> x2 0))) 0)
-        ((and (< x1 0) (> x2 0)) 1)
+  (cond ((and (< x1 0) (> x2 0)) 1)
         ((and (> x1 0) (< x2 0)) -1)
         (else 0)))
 
