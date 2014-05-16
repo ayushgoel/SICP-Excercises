@@ -12,19 +12,20 @@
               (cons-stream 0 s)
               s))
 
-(define integers
-  (cons-stream -1
-               (stream-map (lambda (x) (+ x 1))
-                           integers)))
-
 (define (zero-crossings sense-data)
   (stream-map sign-change-detector 
-              sense-data 
-              (stream-cdr sense-data)))
+              (cons-stream 0 sense-data)
+              ;(stream-cdr sense-data)
+              sense-data
+              ))
 
 (define (smooth-zero-crossings sense-data)
   (zero-crossings (smooth sense-data)))
 
+(define integers
+  (cons-stream -2
+               (stream-map (lambda (x) (+ x 2))
+                           integers)))
 (stream-take integers 10)
 (stream-take (smooth integers) 10)
 (stream-take (smooth-zero-crossings integers) 10)
