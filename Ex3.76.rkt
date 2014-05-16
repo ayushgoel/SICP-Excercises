@@ -2,13 +2,6 @@
 
 (require "stream-memoized.rkt")
 
-(define (make-zero-crossings input-stream last-value last-avpt)
-  (let ((avpt (/ (+ (stream-car input-stream) last-value) 2)))
-    (cons-stream (sign-change-detector avpt last-avpt)
-                 (make-zero-crossings (stream-cdr input-stream)
-                                      (stream-car input-stream)
-                                      avpt))))
-
 (define (sign-change-detector x1 x2)
   (cond ((or (and (< x1 0) (< x2 0))
             (and (> x1 0) (> x2 0))) 0)
