@@ -17,8 +17,10 @@
 (stream-take (integral integers 0 1) 10)
 
 (define (RC R C dt)
+  (define (consts v)
+    (cons-stream v (consts v)))
   (define (volt i v0)
-    (cons-stream v0
+    (add-streams (consts v0)
                  (add-streams (scale-stream (integral i 0 dt)
                                             (/ 1 C))
                               (scale-stream i R))))
